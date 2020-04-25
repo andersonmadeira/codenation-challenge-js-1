@@ -2,9 +2,24 @@ const { expect } = require('chai')
 const { fibonacci, isFibonnaci } = require('../src')
 
 describe('fibonacci', () => {
-  it('should get fibonacci sequence until it passes 350', () => {
+  it('should return an array', () => {
     const result = fibonacci()
-    expect(result).to.be.an('array')
+    expect(result).to.be.a('array')
+  })
+  it('should start with 0', () => {
+    const result = fibonacci()
+    expect(result[0]).equals(0)
+  })
+  it('should end with 377', () => {
+    const result = fibonacci()
+    expect(result[result.length - 1]).equals(377)
+  })
+  it('should be a valid fibonacci sequence', () => {
+    const result = fibonacci()
+    const isFibonacciSequence = result.every((e, i, a) =>
+      i <= 1 ? e === i : e === a[i - 1] + a[i - 2]
+    )
+    expect(isFibonacciSequence).to.be.true
   })
 })
 
